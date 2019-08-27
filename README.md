@@ -13,6 +13,7 @@ Used to init start url for crawlling, can start by search key words of tweets.
 # Usage
 ## Search tweets of Weibo by key word
 ```
+python xspider/itemselastic.py
 python cookie/weibo.py
 python init/tweets_by_keyword.py
 ```

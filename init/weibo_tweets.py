@@ -6,9 +6,9 @@ import os
 import datetime
 
 sys.path.append(os.getcwd())
-from xspider.settings import REDIS_HOST, REDIS_PORT, REDIS_KEY
+from xspider.settings import REDIS_HOST, REDIS_PORT, REDIS_KEY, REDIS_PASSWORD
 
-r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, password='123456')
+r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, password=REDIS_PASSWORD)
 for key in r.scan_iter(REDIS_KEY):
     r.delete(key)
 

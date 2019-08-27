@@ -28,9 +28,9 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 10
+DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
-CONCURRENT_REQUESTS_PER_DOMAIN = 1
+CONCURRENT_REQUESTS_PER_DOMAIN = 2
 # CONCURRENT_REQUESTS_PER_IP = 10
 
 # Disable cookies (enabled by default)
@@ -102,20 +102,20 @@ ITEM_PIPELINES = {
 
 # MongoDB
 
-MONGO_HOST = '127.0.0.1'
+MONGO_HOST = '47.103.38.143'
 MONGO_PORT = 27017
-MONGO_USERNAME = 'sa'
-MONGO_PASSWORD = '123'
-MONGO_DATABASE = 'mongo'
+MONGO_USERNAME = 'spider'
+MONGO_PASSWORD = '123qweASD'
+MONGO_DATABASE = 'xspider'
 
 # Redis
-REDIS_HOST = '127.0.0.1'
-REDIS_PORT = 6379
-REDIS_PASSWORD = '123456'
+REDIS_HOST = '47.103.38.143'
+REDIS_PORT = 16379
+REDIS_PASSWORD = '5244637'
 REDIS_KEY = 'xspider.crawl.urls'
-REDIS_URL = 'redis://sa:123456@127.0.0.1:6379'
+REDIS_URL = 'redis://user:5244637@47.103.38.143:16379'
 
 # Elastic
-ELASTIC_HOST = '127.0.0.1'
+ELASTIC_HOST = '47.103.38.143'
 ELASTIC_USERNAME = 'elastic'
-ELASTIC_PASSWORD = '123'
+ELASTIC_PASSWORD = '123qweASD'

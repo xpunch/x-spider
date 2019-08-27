@@ -45,7 +45,8 @@ class WeiboTweetItem(Item):
         if "location" in self:
             doc.location = self["location"]
         if "geo" in self:
-            doc.geo = self["geo"]
+            geo = self['geo'].split(",")
+            doc.geo = [float(geo[0]),float(geo[1])]
         if "is_orgin" in self:
             doc.is_orgin = self["is_orgin"]
         if "orgin_tweet" in self:

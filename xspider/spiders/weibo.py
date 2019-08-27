@@ -23,7 +23,7 @@ class WeiboSpider(RedisSpider):
     redis_key = REDIS_KEY
 
     custom_settings = {
-        'CONCURRENT_REQUESTS': 10,
+        'CONCURRENT_REQUESTS': 16,
         "DOWNLOAD_DELAY": 5,
     }
 

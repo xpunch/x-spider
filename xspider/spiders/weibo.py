@@ -3,6 +3,7 @@ import re
 import datetime
 import scrapy
 import dateutil.parser
+import redis
 
 from scrapy.crawler import CrawlerProcess
 from scrapy.selector import Selector
@@ -13,7 +14,7 @@ from lxml import etree
 
 from xspider.spiders.utils import convert_weibo_time, extract_weibo_reply, extract_weibo_tweet
 from xspider.items import WeiboTweetItem, WeiboUserItem, WeiboGeoPoint
-from xspider.settings import REDIS_KEY
+from xspider.settings import REDIS_HOST, REDIS_PORT, REDIS_KEY, REDIS_PASSWORD
 
 
 class WeiboSpider(RedisSpider):
@@ -27,6 +28,8 @@ class WeiboSpider(RedisSpider):
         "DOWNLOAD_DELAY": 5,
     }
 
+    cache = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0, password=REDIS_PASSWORD)
+
     def parse(self, response):
         if response.url.endswith('page=1'):
             # if current is page one, then fetch last pages
@@ -35,9 +38,8 @@ class WeiboSpider(RedisSpider):
                 all_page = all_page.group(1)
                 all_page = int(all_page)
                 for page_count in range(2, all_page + 1):
-                    page_url = response.url.replace(
-                        'page=1', 'page={}'.format(page_count))
-                    yield Request(page_url, callback=self.parse, dont_filter=True, meta=response.meta)
+                    page_url = response.url.replace('page=1', 'page={}'.format(page_count))
+                    self.cache.lpush(REDIS_KEY, page_url)
 
         # fetch current page
         tree_node = etree.HTML(response.body)

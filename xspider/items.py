@@ -7,7 +7,6 @@
 
 from scrapy import Item, Field
 from xspider.itemselastic import WeiboTweetDoc, WeiboUserDoc
-import geohash
 
 
 class WeiboTweetItem(Item):

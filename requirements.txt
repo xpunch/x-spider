@@ -8,5 +8,5 @@ elasticsearch-dsl==6.4.0
 python-geohash==0.8.5
 
 Pillow==5.2.0
-lxml==4.2.5
+lxml==4.6.3
 scrapy-redis-bloomfilter==0.7.0
